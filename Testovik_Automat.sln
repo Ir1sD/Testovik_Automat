@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testovik_Automat", "Testovik_Automat\Testovik_Automat.csproj", "{2E9761F5-F601-485B-9CC4-216DD84BF91E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testovik_Data", "Testovik_Data\Testovik_Data.csproj", "{B57F5D00-EF94-491A-A190-588CDBC86F3A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2E9761F5-F601-485B-9CC4-216DD84BF91E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E9761F5-F601-485B-9CC4-216DD84BF91E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E9761F5-F601-485B-9CC4-216DD84BF91E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E9761F5-F601-485B-9CC4-216DD84BF91E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B57F5D00-EF94-491A-A190-588CDBC86F3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B57F5D00-EF94-491A-A190-588CDBC86F3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B57F5D00-EF94-491A-A190-588CDBC86F3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B57F5D00-EF94-491A-A190-588CDBC86F3A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1E05452C-C484-481B-8298-134B07B99133}
+	EndGlobalSection
+EndGlobal
