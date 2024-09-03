@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using Testovik_Automat.Models;
 
 namespace Testovik_Automat.Controllers
 {
