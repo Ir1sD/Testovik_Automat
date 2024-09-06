@@ -16,8 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations\" />
-    <Folder Include="Repositories\" />
+    <ProjectReference Include="..\Testovik_Core\Testovik_Core.csproj" />
   </ItemGroup>
 
 </Project>

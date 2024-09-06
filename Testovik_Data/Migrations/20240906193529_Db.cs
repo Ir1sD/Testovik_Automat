@@ -53,6 +53,22 @@ namespace Testovik_Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "OrdersWithUsers",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdOrder = table.Column<long>(type: "bigint", nullable: false),
+                    IdTovar = table.Column<long>(type: "bigint", nullable: false),
+                    NameTovar = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Count = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrdersWithUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Tovars",
                 columns: table => new
                 {
@@ -66,56 +82,19 @@ namespace Testovik_Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Tovars", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Tovars_Brends_BrendId",
-                        column: x => x.IdBrend,
-                        principalTable: "Brends",
-                        principalColumn: "Id");
                 });
-
-            migrationBuilder.CreateTable(
-                name: "OrdersWithUsers",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    IdOrder = table.Column<long>(type: "bigint", nullable: false),
-                    IdTovar = table.Column<long>(type: "bigint", nullable: false),
-                    NameTovar = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Count = table.Column<int>(type: "int", nullable: false),
-                    OrderId = table.Column<long>(type: "bigint", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_OrdersWithUsers", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_OrdersWithUsers_Orders_OrderId",
-                        column: x => x.OrderId,
-                        principalTable: "Orders",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_OrdersWithUsers_OrderId",
-                table: "OrdersWithUsers",
-                column: "OrderId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Tovars_BrendId",
-                table: "Tovars",
-                column: "IdBrend");
 
 
 			migrationBuilder.InsertData(
-	            table: "Coins",
-	            columns: new[] { "Num", "Count" },
-	            values: new object[,]
-	            {
-		             {1 , 10},
-		             {2 , 12},
-		             {5 , 6},
-		             {10 , 5}
-	            });
+	        table: "Coins",
+	        columns: new[] { "Num", "Count" },
+	        values: new object[,]
+	        {
+		         {1 , 10},
+		         {2 , 12},
+		         {5 , 6},
+		         {10 , 5}
+	        });
 
 			migrationBuilder.InsertData(
 				table: "Brends",
@@ -131,20 +110,20 @@ namespace Testovik_Data.Migrations
 				values: new object[,]
 				{
 		            {"Газированный напиток Coca-Cola" , 1 , "res/item1.jpg" , 110},
-			        {"Газированный напиток Pepsi" , 2 , "res/item2.jpg" , 90},
-			        {"Газированный напиток Fanta" , 3 , "res/item3.jpg" , 100},
-			        {"Газированный напиток Dobry" , 4 , "res/item4.jpg" , 113},
-			        {"Газированный напиток Drive" , 5 , "res/item5.jpg" , 110},
-			        {"Газированный напиток Coca-Cola" , 1 , "res/item1.jpg" , 110},
-			        {"Газированный напиток Pepsi" , 2 , "res/item2.jpg" , 90},
-			        {"Газированный напиток Fanta" , 3 , "res/item3.jpg" , 100},
-			        {"Газированный напиток Dobry" , 4 , "res/item4.jpg" , 113},
-			        {"Газированный напиток Drive" , 5 , "res/item5.jpg" , 110},
-			        {"Газированный напиток Coca-Cola" , 1 , "res/item1.jpg" , 110},
-			        {"Газированный напиток Pepsi" , 2 , "res/item2.jpg" , 90},
-			        {"Газированный напиток Fanta" , 3 , "res/item3.jpg" , 100},
-			        {"Газированный напиток Dobry" , 4 , "res/item4.jpg" , 113},
-			        {"Газированный напиток Drive" , 5 , "res/item5.jpg" , 110}
+		            {"Газированный напиток Pepsi" , 2 , "res/item2.jpg" , 90},
+		            {"Газированный напиток Fanta" , 3 , "res/item3.jpg" , 100},
+		            {"Газированный напиток Dobry" , 4 , "res/item4.jpg" , 113},
+		            {"Газированный напиток Drive" , 5 , "res/item5.jpg" , 110},
+		            {"Газированный напиток Coca-Cola" , 1 , "res/item1.jpg" , 110},
+		            {"Газированный напиток Pepsi" , 2 , "res/item2.jpg" , 90},
+		            {"Газированный напиток Fanta" , 3 , "res/item3.jpg" , 100},
+		            {"Газированный напиток Dobry" , 4 , "res/item4.jpg" , 113},
+		            {"Газированный напиток Drive" , 5 , "res/item5.jpg" , 110},
+		            {"Газированный напиток Coca-Cola" , 1 , "res/item1.jpg" , 110},
+		            {"Газированный напиток Pepsi" , 2 , "res/item2.jpg" , 90},
+		            {"Газированный напиток Fanta" , 3 , "res/item3.jpg" , 100},
+		            {"Газированный напиток Dobry" , 4 , "res/item4.jpg" , 113},
+		            {"Газированный напиток Drive" , 5 , "res/item5.jpg" , 110}
 				});
 		}
 
@@ -152,19 +131,19 @@ namespace Testovik_Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Brends");
+
+            migrationBuilder.DropTable(
                 name: "Coins");
+
+            migrationBuilder.DropTable(
+                name: "Orders");
 
             migrationBuilder.DropTable(
                 name: "OrdersWithUsers");
 
             migrationBuilder.DropTable(
                 name: "Tovars");
-
-            migrationBuilder.DropTable(
-                name: "Orders");
-
-            migrationBuilder.DropTable(
-                name: "Brends");
         }
     }
 }

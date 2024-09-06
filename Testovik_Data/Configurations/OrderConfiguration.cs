@@ -14,11 +14,6 @@ namespace Testovik_Data.Configurations
 				.ValueGeneratedOnAdd();
 
 			builder.ToTable("Orders");
-
-			builder.HasMany(e => e.OrdersWithUsersEntities)
-				.WithOne(e => e.Order)
-				.HasForeignKey(e => e.IdOrder)
-				.IsRequired();
 		}
 	}
 }

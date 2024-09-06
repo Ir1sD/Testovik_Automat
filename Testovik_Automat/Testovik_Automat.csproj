@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Testovik_Core\Testovik_Core.csproj" />
     <ProjectReference Include="..\Testovik_Data\Testovik_Data.csproj" />
   </ItemGroup>
 

@@ -15,10 +15,6 @@ namespace Testovik_Data.Configurations
 
 			builder.ToTable("Tovars");
 
-			builder.HasOne(e => e.Brend)
-				.WithMany(e => e.Tovars)
-				.HasForeignKey(e => e.IdBrend)
-				.IsRequired();
 		}
 	}
 }

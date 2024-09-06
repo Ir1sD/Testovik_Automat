@@ -98,12 +98,7 @@ namespace Testovik_Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("OrderId")
-                        .HasColumnType("bigint");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
 
                     b.ToTable("OrdersWithUsers");
                 });
@@ -115,9 +110,6 @@ namespace Testovik_Data.Migrations
                         .HasColumnType("bigint");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<long?>("BrendId")
-                        .HasColumnType("bigint");
 
                     b.Property<long>("IdBrend")
                         .HasColumnType("bigint");
@@ -135,37 +127,7 @@ namespace Testovik_Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BrendId");
-
                     b.ToTable("Tovars");
-                });
-
-            modelBuilder.Entity("Testovik_Data.Entities.OrderWithUserEntity", b =>
-                {
-                    b.HasOne("Testovik_Data.Entities.OrderEntity", "Order")
-                        .WithMany("OrdersWithUsersEntities")
-                        .HasForeignKey("OrderId");
-
-                    b.Navigation("Order");
-                });
-
-            modelBuilder.Entity("Testovik_Data.Entities.TovarEntity", b =>
-                {
-                    b.HasOne("Testovik_Data.Entities.BrendEntity", "Brend")
-                        .WithMany("Tovars")
-                        .HasForeignKey("BrendId");
-
-                    b.Navigation("Brend");
-                });
-
-            modelBuilder.Entity("Testovik_Data.Entities.BrendEntity", b =>
-                {
-                    b.Navigation("Tovars");
-                });
-
-            modelBuilder.Entity("Testovik_Data.Entities.OrderEntity", b =>
-                {
-                    b.Navigation("OrdersWithUsersEntities");
                 });
 #pragma warning restore 612, 618
         }

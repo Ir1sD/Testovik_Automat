@@ -8,6 +8,5 @@ namespace Testovik_Data.Entities
 		public long IdTovar { get; set; }
 		public string NameTovar { get; set; } = string.Empty;
 		public int Count { get; set; }
-		public OrderEntity? Order { get; set; }
 	}
 }
