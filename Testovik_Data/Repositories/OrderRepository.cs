@@ -1,30 +1,29 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Testovik_Data.Context;
 using Testovik_Core.Models;
+using Testovik_Data.Context;
 using Testovik_Core.Abstractions;
 
 namespace Testovik_Data.Repositories
 {
-	public class BrendRepository : IBrendRepository
+	public class OrderRepository : IOrderRepository
 	{
 		private readonly TestovikContext _context;
 
-		public BrendRepository(TestovikContext context)
+		public OrderRepository(TestovikContext context)
 		{
 			_context = context;
 		}
 
 		/// <summary>
-		/// Возвращает список брендов
+		/// Возвращает список заказов
 		/// </summary>
 		/// <returns></returns>
-		public async Task<List<Brend>> GetListAsync()
+		public async Task<List<Order>> GetListAsync()
 		{
-			return await _context.Brends
+			return await _context.Orders
 				.AsNoTracking()
-				.Select(c => Brend.New(c.Id, c.Name))
+				.Select(c => Order.New(c.Id, c.DateCreate, c.Sum))
 				.ToListAsync();
 		}
-
 	}
 }

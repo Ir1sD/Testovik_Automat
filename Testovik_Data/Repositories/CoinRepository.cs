@@ -1,30 +1,30 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Testovik_Data.Context;
 using Testovik_Core.Models;
+using Testovik_Data.Context;
 using Testovik_Core.Abstractions;
 
 namespace Testovik_Data.Repositories
 {
-	public class BrendRepository : IBrendRepository
+
+	public class CoinRepository : ICoinRepository
 	{
 		private readonly TestovikContext _context;
 
-		public BrendRepository(TestovikContext context)
+		public CoinRepository(TestovikContext context)
 		{
 			_context = context;
 		}
 
 		/// <summary>
-		/// Возвращает список брендов
+		/// Возвращает список монет
 		/// </summary>
 		/// <returns></returns>
-		public async Task<List<Brend>> GetListAsync()
+		public async Task<List<Coin>> GetListAsync()
 		{
-			return await _context.Brends
+			return await _context.Coins
 				.AsNoTracking()
-				.Select(c => Brend.New(c.Id, c.Name))
+				.Select(c => Coin.New(c.Id, c.Num, c.Count))
 				.ToListAsync();
 		}
-
 	}
 }
