@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewData["Title"] = "Оформление";
+}
+
+<body>
+	<div class="content">
+		<div class="top_line">
+			<h1>Оформление заказа</h1>
+		</div>
+
+		<table class="table_tovar">
+			<thead>
+			<th>Товар</th>
+			<th></th>
+			<th>Количество</th>
+			<th>Цена</th>
+			</thead>
+			<tbody>
+				<tr>
+					<td><img src="res/kola.jpg" alt="" class="img_tovar_order"></td>
+					<td><label for="" class="label_name">Напиток газированный Coca-Cola</label></td>
+					<td>
+						<button class="button_number">-</button>
+						<input type="text" class="input_number">
+						<button class="button_number">+</button>
+					</td>
+					<td><label for="" class="label_name" style="font-size: 30px;">110руб</label></td>
+					<td><img src="res/delete.png" alt="" class="icon"></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<hr class="line">
+
+		<div class="block_text">
+			<label class="label_name" style="font-size: 22px;">Итоговая сумма: </label>
+			<label class="label_name" style="font-size: 30px;">110 руб.</label> <br>
+		</div>
+
+		<div class="block_button">
+			<button class="action_button" style="background-color: yellow;">Вернуться</button>
+			<button class="action_button action_button__active" style="float: right;">Оплата</button>
+		</div>
+	</div>
+
+</body>

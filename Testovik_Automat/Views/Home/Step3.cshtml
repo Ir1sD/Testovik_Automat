@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewData["Title"] = "Оплата";
+}
+
+<body>
+	<div class="content">
+		<div class="top_line">
+			<h1>Оплата</h1>
+		</div>
+
+		<table class="table_tovar">
+			<thead>
+			<th>Номинал</th>
+			<th></th>
+			<th>Количество</th>
+			<th>Сумма</th>
+			</thead>
+			<tbody>
+				<tr>
+					<td><button class="coin">1</button></td>
+					<td><label for="" class="label-tovar-name" style="float: left;">1 рубль</label></td>
+					<td>
+						<button class="button_number">-</button>
+						<input type="text" class="input_number">
+						<button class="button_number">+</button>
+					</td>
+					<td><label for="" class="label_name" style="font-size: 30px;">1 руб</label></td>
+
+				</tr>
+
+				<tr>
+					<td><button class="coin">2</button></td>
+					<td><label for="" class="label-tovar-name" style="float: left;">2 рубля</label></td>
+					<td>
+						<button class="button_number">-</button>
+						<input type="text" class="input_number">
+						<button class="button_number">+</button>
+					</td>
+					<td><label for="" class="label_name" style="font-size: 30px;">2 руб</label></td>
+
+				</tr>
+
+				<tr>
+					<td><button class="coin">5</button></td>
+					<td><label for="" class="label-tovar-name" style="float: left;">5 рублей</label></td>
+					<td>
+						<button class="button_number">-</button>
+						<input type="text" class="input_number">
+						<button class="button_number">+</button>
+					</td>
+					<td><label for="" class="label_name" style="font-size: 30px;">5 руб</label></td>
+
+				</tr>
+
+				<tr>
+					<td><button class="coin">10</button></td>
+					<td><label for="" class="label-tovar-name" style="float: left;">10 рублей</label></td>
+					<td>
+						<button class="button_number">-</button>
+						<input type="text" class="input_number">
+						<button class="button_number">+</button>
+					</td>
+					<td><label for="" class="label_name" style="font-size: 30px;">10 руб</label></td>
+
+				</tr>
+			</tbody>
+		</table>
+
+		<hr class="line">
+
+		<div class="block_text">
+			<label class="label_name" style="font-size: 22px;">Итоговая сумма: </label>
+			<label class="label_name" style="font-size: 30px;">110 руб.</label> <br>
+		</div>
+
+		<div class="block_button">
+			<button class="action_button" style="background-color: yellow;">Вернуться</button>
+			<button class="action_button action_button__active" style="float: right;">Оплатить</button>
+		</div>
+	</div>
+
+</body>

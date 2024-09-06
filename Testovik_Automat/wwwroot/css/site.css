@@ -1,22 +1,225 @@
-html {
-  font-size: 14px;
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+button {
+	cursor: pointer;
+}
+.content {
+	/* border: 1px , black , solid; */
+	width: 90%;
+	margin-left: 5%;
+	margin-top: 5%;
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+.top_line {
+	display: flex;
+	flex-wrap: wrap;
+	height: 30dvh;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+.line {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+.col {
+	width: 32%;
+	height: 50%;
+	padding: 10px;
 }
 
-body {
-  margin-bottom: 60px;
+.col__wide {
+	width: 36%;
+}
+
+.select {
+	width: 80%;
+	height: 25px;
+}
+
+.action_button {
+	width: 300px;
+	height: 50px;
+	font-size: 20px;
+	border: 0px;
+	position: relative;
+}
+
+.action_button__active {
+	background-color: rgb(111, 226, 111);
+	color: white;
+}
+
+.catalog {
+	
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.item {
+	width: 24%;
+	height: 450px;
+	border: 1px , rebeccapurple , solid;
+	margin-right: 1%;
+	margin-top: 3%;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.item_content {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	height: 15%;
+}
+
+.item_content__wide {
+	height: 55%;
+}
+
+.tovar-img {
+	width: 300px;
+	height: 200px;
+	margin-top: 30px;
+}
+
+
+.label-tovar-name {
+	font-size: 23px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 250px;
+}
+
+.label-tovar-name__wide {
+	width: auto;
+}
+.catalog-button {
+	width: 200px;
+	margin-left: auto;
+	margin-right: auto;
+	height: 30px;
+	cursor: pointer;
+	background-color: yellow;
+	border: 0px;
+}
+
+/* Страница 2 */
+
+.table_tovar {
+	width: 100%;
+}
+
+.table_tovar th {
+	/* border: 1px solid black; */
+	font-size: 20px;
+}
+
+.table_tovar td {
+	/* border: 1px solid black; */
+	padding: 5px;
+	text-align: center;
+}
+
+.table_tovar thead th:nth-child(1) {
+  width: 10%;
+}
+
+.table_tovar thead th:nth-child(2) , 
+.table_tovar thead th:nth-child(3) , 
+.table_tovar thead th:nth-child(4) {
+  width: 28%;
+}
+
+.table_tovar thead th:nth-child(5) {
+	width: 6%;
+}
+
+.img_tovar_order {
+	width: 120px;
+	height: 100px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.label_name {
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.button_number {
+	width: 40px;
+	height: 40px;
+	border-radius: 10px;
+	background-color: black;
+	color: white;
+	font-size: 30px;
+	cursor: pointer;
+}
+
+.input_number {
+	height: 50px;
+	width: 100px;
+	margin-left: 10px;
+	margin-right: 10px;
+	font-size: 30px;
+	text-align: center;
+}
+
+.block_text {
+	width: 100%;
+	height: 50px;
+	text-align: right;
+}
+
+.block_button {
+	width: 100%;
+	height: 50px;
+	margin-top: 10px;
+}
+
+.icon {
+	width: 50px;
+	cursor: pointer;
+}
+
+/* страница 3 */
+
+.coin {
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	border: 1px , gray , solid;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+/* страница 4 */
+
+.header_text {
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 35px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.label_sum {
+	color: rgb(121, 252, 121);
+	font-weight: bold;
+}
+
+.coin__small {
+	width: 50px;
+	height: 50px;
+	margin-right: 20px;
+	margin-bottom: 30px;
+}
+
+.container_coins {
+	width: 150px;
+	margin-left: auto;
+	margin-right: auto;
 }

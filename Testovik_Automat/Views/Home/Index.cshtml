@@ -1,8 +1,73 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Главная";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<body>
+	<div class="content">
+		<div class="top_line">
+
+			<div class="col col__wide">
+				<h1>Газированные напитки</h1>
+			</div>
+
+			<div class="col">
+			</div>
+
+			<div class="col">
+				<button class="action_button">Импорт</button>
+			</div>
+
+			<div class="col col__wide">
+				<label>Выберите бренд</label>
+				<br><br>
+				<select name="" class="select">
+					<option value="1">Все бренды</option>
+				</select>
+			</div>
+
+			<div class="col">
+				<label>Стоимость</label>
+				<br><br>
+				<div class="trackbar">
+					<span class="bound_label">0 руб</span>
+					<input type="range" />
+					<span class="bound_label">110 руб</span>
+				</div>
+			</div>
+
+			<div class="col">
+				<button class="action_button action_button__active">Выбрано</button>
+			</div>
+
+
+
+		</div>
+
+		<div class="catalog">
+
+			<div class="item">
+				<div class="item_content item_content__wide">
+					<img src="res/kola.jpg" alt="" class="tovar-img">
+				</div>
+				<div class="item_content">
+					<label for="" class="label-tovar-name">Напиток газированный </label>
+					<label for="" class="label-tovar-name label-tovar-name__wide">Coca-Cola</label>
+				</div>
+
+				<div class="item_content">
+					<label for="" class="label-tovar-name label-tovar-name__wide">100 руб</label>
+				</div>
+
+				<div class="item_content">
+					<button class="catalog-button">Выбрать</button>
+				</div>
+
+
+			</div>
+
+
+		</div>
+	</div>
+	</div>
+
+</body>
