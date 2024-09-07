@@ -1,4 +1,4 @@
-﻿
+﻿@model int;
 @{
     ViewData["Title"] = "Оплата";
 }
@@ -21,9 +21,9 @@
 					<td><button class="coin">1</button></td>
 					<td><label for="" class="label-tovar-name" style="float: left;">1 рубль</label></td>
 					<td>
-						<button class="button_number">-</button>
-						<input type="text" class="input_number">
-						<button class="button_number">+</button>
+						<button class="button_number minus" value="1">-</button>
+						<input type="number" class="input_number" value="0" id="size-1">
+						<button class="button_number plus" value="1">+</button>
 					</td>
 					<td><label for="" class="label_name" style="font-size: 30px;">1 руб</label></td>
 
@@ -33,9 +33,9 @@
 					<td><button class="coin">2</button></td>
 					<td><label for="" class="label-tovar-name" style="float: left;">2 рубля</label></td>
 					<td>
-						<button class="button_number">-</button>
-						<input type="text" class="input_number">
-						<button class="button_number">+</button>
+						<button class="button_number minus" value="2">-</button>
+						<input type="number" class="input_number" value="0" id="size-2">
+						<button class="button_number plus" value="2">+</button>
 					</td>
 					<td><label for="" class="label_name" style="font-size: 30px;">2 руб</label></td>
 
@@ -45,9 +45,9 @@
 					<td><button class="coin">5</button></td>
 					<td><label for="" class="label-tovar-name" style="float: left;">5 рублей</label></td>
 					<td>
-						<button class="button_number">-</button>
-						<input type="text" class="input_number">
-						<button class="button_number">+</button>
+						<button class="button_number minus" value="5">-</button>
+						<input type="number" class="input_number" value="0" id="size-5">
+						<button class="button_number plus" value="5">+</button>
 					</td>
 					<td><label for="" class="label_name" style="font-size: 30px;">5 руб</label></td>
 
@@ -57,9 +57,9 @@
 					<td><button class="coin">10</button></td>
 					<td><label for="" class="label-tovar-name" style="float: left;">10 рублей</label></td>
 					<td>
-						<button class="button_number">-</button>
-						<input type="text" class="input_number">
-						<button class="button_number">+</button>
+						<button class="button_number minus" value="10">-</button>
+						<input type="number" class="input_number" value="0" id="size-10">
+						<button class="button_number plus" value="10">+</button>
 					</td>
 					<td><label for="" class="label_name" style="font-size: 30px;">10 руб</label></td>
 
@@ -70,14 +70,96 @@
 		<hr class="line">
 
 		<div class="block_text">
+			<label class="label_name" style="font-size: 22px;">Вы внесли: </label>
+			<label class="label_name no__active" style="font-size: 30px" id="sumal">0 руб</label> <br>
+		</div>
+		<div class="block_text">
 			<label class="label_name" style="font-size: 22px;">Итоговая сумма: </label>
-			<label class="label_name" style="font-size: 30px;">110 руб.</label> <br>
+			<label class="label_name" style="font-size: 30px;" id="sumall">@Model</label> <br>
 		</div>
 
 		<div class="block_button">
-			<button class="action_button" style="background-color: yellow;">Вернуться</button>
-			<button class="action_button action_button__active" style="float: right;">Оплатить</button>
+			
+			<form asp-action="Step4">
+				<input type="submit" class="action_button" style="background-color: yellow;" asp-action="Index" value="Вернуться" />
+
+				<input type="submit" class="action_button" style="float: right;" value="Оплатить" disabled="disabled" id="go">
+				<input type="hidden" name="i1" value="0" id="i-1"/>
+				<input type="hidden" name="i2" value="0" id="i-2"/>
+				<input type="hidden" name="i5" value="0" id="i-5"/>
+				<input type="hidden" name="i10" value="0" id="i-10"/>
+				<input type="hidden" name="sum" value="@Model">
+			</form>
 		</div>
 	</div>
 
 </body>
+
+<script>
+	$(document).ready(function () {
+
+		function Sum()
+		{
+			var sumall = +$('#sumall').text();
+			
+			var sumValues = $('.plus').map(function () {
+				var sum = +$(this).val();
+				var el = $('#size-' + sum);
+				return sum * el.val();
+			}).get();
+
+			var totalSum = sumValues.reduce(function (accumulator, currentValue) {
+				return accumulator + currentValue;
+			}, 0);
+
+			$('#sumal').text(totalSum);
+
+			if (sumall > totalSum)
+			{
+				$('#sumal').removeClass("yes__active");
+				$('#sumal').addClass("no__active");
+				$('#go').prop('disabled', true);
+				$('#go').removeClass('button__active');
+			}
+			else
+			{
+				$('#sumal').addClass("yes__active");
+				$('#sumal').removeClass("no__active");
+				$('#go').prop('disabled', false);
+				$('#go').addClass('button__active');
+			}
+		}
+
+		$('.minus').click(function () {
+			let id = +$(this).val();
+			var number = +$('#size-' + id).val();
+
+			if (number != 0) {
+				$('#size-' + id).val(number - 1);
+				$('#i-' + id).val(number - 1);
+			}
+
+			Sum();
+		});
+
+		$('.plus').click(function () {
+			let id = +$(this).val();
+			var number = +$('#size-' + id).val();
+
+			$('#size-' + id).val(number + 1);
+			$('#i-' + id).val(number + 1);
+			Sum();
+		});
+
+		$('.input_number').change(function () {
+			var num = $(this).val();
+			if (num.length == 0) {
+				$(this).val(0);
+			}
+			else if (num < 0) {
+				$(this).val(0);
+			}
+			Sum();
+		});
+	});
+</script>

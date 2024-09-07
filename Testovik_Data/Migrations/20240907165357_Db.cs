@@ -68,6 +68,10 @@ namespace Testovik_Data.Migrations
                     table.PrimaryKey("PK_OrdersWithUsers", x => x.Id);
                 });
 
+
+
+
+
             migrationBuilder.CreateTable(
                 name: "Tovars",
                 columns: table => new
@@ -77,24 +81,24 @@ namespace Testovik_Data.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IdBrend = table.Column<long>(type: "bigint", nullable: false),
                     LogoPath = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<int>(type: "int", nullable: false)
+                    Price = table.Column<int>(type: "int", nullable: false),
+                    Count = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Tovars", x => x.Id);
                 });
 
-
-			migrationBuilder.InsertData(
-	        table: "Coins",
-	        columns: new[] { "Num", "Count" },
-	        values: new object[,]
-	        {
-		         {1 , 10},
-		         {2 , 12},
-		         {5 , 6},
-		         {10 , 5}
-	        });
+			    migrationBuilder.InsertData(
+                table: "Coins",
+                columns: new[] { "Num", "Count" },
+                values: new object[,]
+                {
+	                 {1 , 10},
+	                 {2 , 12},
+	                 {5 , 6},
+	                 {10 , 5}
+                });
 
 			migrationBuilder.InsertData(
 				table: "Brends",
@@ -106,24 +110,24 @@ namespace Testovik_Data.Migrations
 
 			migrationBuilder.InsertData(
 				table: "Tovars",
-				columns: new[] { "Name", "IdBrend", "LogoPath", "Price" },
+				columns: new[] { "Name", "IdBrend", "LogoPath", "Price" , "Count"},
 				values: new object[,]
 				{
-		            {"Газированный напиток Coca-Cola" , 1 , "res/item1.jpg" , 110},
-		            {"Газированный напиток Pepsi" , 2 , "res/item2.jpg" , 90},
-		            {"Газированный напиток Fanta" , 3 , "res/item3.jpg" , 100},
-		            {"Газированный напиток Dobry" , 4 , "res/item4.jpg" , 113},
-		            {"Газированный напиток Drive" , 5 , "res/item5.jpg" , 110},
-		            {"Газированный напиток Coca-Cola" , 1 , "res/item1.jpg" , 110},
-		            {"Газированный напиток Pepsi" , 2 , "res/item2.jpg" , 90},
-		            {"Газированный напиток Fanta" , 3 , "res/item3.jpg" , 100},
-		            {"Газированный напиток Dobry" , 4 , "res/item4.jpg" , 113},
-		            {"Газированный напиток Drive" , 5 , "res/item5.jpg" , 110},
-		            {"Газированный напиток Coca-Cola" , 1 , "res/item1.jpg" , 110},
-		            {"Газированный напиток Pepsi" , 2 , "res/item2.jpg" , 90},
-		            {"Газированный напиток Fanta" , 3 , "res/item3.jpg" , 100},
-		            {"Газированный напиток Dobry" , 4 , "res/item4.jpg" , 113},
-		            {"Газированный напиток Drive" , 5 , "res/item5.jpg" , 110}
+		            {"Coca-Cola" , 1 , "res/item1.jpg" , 110 , 10},
+		            {"Pepsi" , 2 , "res/item2.jpg" , 90, 10},
+		            {"Fanta" , 3 , "res/item3.jpg" , 100, 10},
+		            {"Dobry" , 4 , "res/item4.jpg" , 113, 10},
+		            {"Drive" , 5 , "res/item5.jpg" , 110, 10},
+		            {"Coca-Cola" , 1 , "res/item1.jpg" , 110 , 10},
+		            {"Pepsi" , 2 , "res/item2.jpg" , 90, 10},
+		            {"Fanta" , 3 , "res/item3.jpg" , 100, 10},
+		            {"Dobry" , 4 , "res/item4.jpg" , 113 , 10},
+		            {"Drive" , 5 , "res/item5.jpg" , 110, 10},
+		            {"Coca-Cola" , 1 , "res/item1.jpg" , 110 , 10},
+		            {"Pepsi" , 2 , "res/item2.jpg" , 90 , 10},
+		            {"Fanta" , 3 , "res/item3.jpg" , 100 , 10},
+		            {"Dobry" , 4 , "res/item4.jpg" , 113 , 10},
+		            {"Drive" , 5 , "res/item5.jpg" , 110 , 10}
 				});
 		}
 

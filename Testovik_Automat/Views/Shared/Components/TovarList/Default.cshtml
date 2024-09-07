@@ -1,0 +1,40 @@
+﻿@using Testovik_Automat.Requests;
+
+@model List<TovarListRequest>
+
+@foreach (var item in Model)
+{
+	string Class = "button__def";
+
+	@if(item.IsActive)
+	{
+		Class = "button__active";
+	}
+
+	<div class="item">
+		<div class="item_content item_content__wide">
+			<img src="@item.LogoPath" alt="" class="tovar-img">
+		</div>
+		<div class="item_content">
+			<label for="" class="label-tovar-name" style="width: 100%; text-align: center">Напиток газированный </label>
+			<label for="" class="label-tovar-name label-tovar-name__wide">@item.Name</label>
+		</div>
+
+		<div class="item_content">
+			<label for="" class="label-tovar-name label-tovar-name__wide">@item.Price руб</label>
+		</div>
+
+		<div class="item_content">
+			@if(item.Count != 0)
+			{
+				<button class="catalog-button @Class" id="@item.Id">Выбрать</button>
+			}
+			else
+			{
+				<button class="catalog-button" disabled = "disabled" style="color: red; cursor: default">Закончилось</button>
+			}
+		</div>
+
+
+	</div>
+}

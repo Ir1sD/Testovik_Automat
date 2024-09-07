@@ -25,5 +25,23 @@ namespace Testovik_Data.Repositories
 				.Select(c => OrderWithUser.New(c.Id, c.IdOrder, c.IdTovar, c.NameTovar, c.Count))
 				.ToListAsync();
 		}
+
+		public async Task AddRange(List<Tovar> tovars , int[] counts , long idOrder)
+		{
+			for(int i = 0; i < tovars.Count; i++)
+			{
+				var ord = new Entities.OrderWithUserEntity()
+				{
+					Count = counts[i],
+					IdOrder = idOrder,
+					IdTovar = tovars[i].Id,
+					NameTovar = tovars[i].Name,
+				};
+
+				await _context.OrdersWithUsers.AddAsync(ord);
+			}
+
+			await _context.SaveChangesAsync();
+		}
 	}
 }

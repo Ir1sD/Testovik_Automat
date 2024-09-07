@@ -1,6 +1,10 @@
-﻿
+﻿@using Testovik_Core.Models;
+
+@model List<Tovar>
+
 @{
-    ViewData["Title"] = "Оформление";
+	ViewData["Title"] = "Оформление";
+	int index = -1;
 }
 
 <body>
@@ -8,7 +12,6 @@
 		<div class="top_line">
 			<h1>Оформление заказа</h1>
 		</div>
-
 		<table class="table_tovar">
 			<thead>
 			<th>Товар</th>
@@ -17,17 +20,28 @@
 			<th>Цена</th>
 			</thead>
 			<tbody>
-				<tr>
-					<td><img src="res/kola.jpg" alt="" class="img_tovar_order"></td>
-					<td><label for="" class="label_name">Напиток газированный Coca-Cola</label></td>
-					<td>
-						<button class="button_number">-</button>
-						<input type="text" class="input_number">
-						<button class="button_number">+</button>
-					</td>
-					<td><label for="" class="label_name" style="font-size: 30px;">110руб</label></td>
-					<td><img src="res/delete.png" alt="" class="icon"></td>
-				</tr>
+
+				@foreach (var tovar in Model)
+				{
+					<input type="hidden" value="@tovar.Count" id="count-@tovar.Id">
+
+					<tr id="tr-@tovar.Id" class="tr-items">
+						<td><img src="~/@tovar.LogoPath" alt="" class="img_tovar_order"></td>
+						<td><label for="" class="label_name">Напиток газированный @tovar.Name</label></td>
+						<td>
+							<button class="button_number minus" value="@tovar.Id">-</button>
+							<input type="number" class="input_number" value="1" id="size-@tovar.Id" min="1" max="@tovar.Count">
+							<button class="button_number plus" value="@tovar.Id">+</button>
+						</td>
+						<td>
+							<label class="label_name sum" style="font-size: 30px;" tabindex="@tovar.Id">@tovar.Price</label>
+							<label class="label_name" style="font-size: 30px;">руб</label>
+						</td>
+
+						<td><img src="~/res/delete.png" alt="" class="icon" id="@tovar.Id"></td>
+					</tr>
+				}
+
 			</tbody>
 		</table>
 
@@ -35,13 +49,104 @@
 
 		<div class="block_text">
 			<label class="label_name" style="font-size: 22px;">Итоговая сумма: </label>
-			<label class="label_name" style="font-size: 30px;">110 руб.</label> <br>
+			<label class="label_name sumall" style="font-size: 30px;"></label> <br>
 		</div>
 
 		<div class="block_button">
-			<button class="action_button" style="background-color: yellow;">Вернуться</button>
-			<button class="action_button action_button__active" style="float: right;">Оплата</button>
+			<form asp-action="Step3" asp-controller="Home">
+				<input type="submit" asp-action="Index" asp-controller="Home" class="action_button button__def" value="Вернуться">
+				@foreach (var tovar in Model)
+				{
+					index++;
+					<input type="hidden" value="@tovar.Id" name="[@index].Id" id="si1-@tovar.Id">
+					<input type="hidden" value="1" id="si-@tovar.Id" name="[@index].Count">
+				}
+				<input type="submit" class="action_button button__active" style="float: right;" id="go" value="Оплата">
+			</form>
 		</div>
+		
 	</div>
 
 </body>
+
+<script>
+	$(document).ready(function () {
+
+		function Sum() {
+			
+			var sumValues = $('.sum').map(function () {
+				var id = +$(this).attr('tabindex');
+				var el = $('#size-' + id);
+				return +$(this).text() * +el.val(); 
+			}).get(); 
+
+			var totalSum = sumValues.reduce(function (accumulator, currentValue) {
+				return accumulator + currentValue; 
+			}, 0);
+
+			$('.sumall').text(totalSum + " руб");
+		}
+
+		Sum();
+
+		$('.minus').click(function (){
+			var id = $(this).val();
+			var number = +$('#size-' + id).val();
+
+			if (number != 1) {
+				$('#size-' + id).val(number - 1);
+				$('#si-' + id).val(number - 1);
+			}
+
+			Sum();
+		});
+
+		$('.plus').click(function () {
+			var id = $(this).val();
+			var number = +$('#size-' + id).val();
+			var count = +$("#count-" + id).val();
+
+			if (number < count) {
+				$('#size-' + id).val(number + 1);
+				$('#si-' + id).val(number + 1);
+			}
+			Sum();
+		});
+
+		$('.input_number').change(function () {
+			var num = $(this).val();
+			if(num.length == 0)
+			{
+				$(this).val(1);
+			}
+			else if(num < 1)
+			{
+				$(this).val(1);
+			}
+			else if(num > 10)
+			{
+				$(this).val(1);
+			}
+
+			Sum();
+		});
+
+		$('.icon').click(function () {
+			var id = $(this).attr("id");
+			var element = document.querySelector('#tr-' + id);
+			if (element) {
+				element.remove();
+			}
+			var elem = document.querySelector('.tr-items');
+			$("#si-" + id).remove();
+			$("#si1-" + id).remove();
+			if(!elem)
+			{
+				$('#go').prop('disabled', true);
+				$('#go').removeClass('button__active');
+			}
+			Sum();
+		});
+
+	});
+</script>

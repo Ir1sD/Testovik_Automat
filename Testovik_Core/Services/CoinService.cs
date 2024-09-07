@@ -16,5 +16,10 @@ namespace Testovik_Core.Services
 		{
 			return await _coinRepository.GetListAsync();
 		}
+
+		public async Task AddRange(int i1 , int i2 , int i5 , int i10)
+		{
+			await _coinRepository.AddRange(i1, i2, i5, i10);
+		}
 	}
 }

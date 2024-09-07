@@ -12,7 +12,7 @@ using Testovik_Data.Context;
 namespace Testovik_Data.Migrations
 {
     [DbContext(typeof(TestovikContext))]
-    [Migration("20240906193529_Db")]
+    [Migration("20240907165357_Db")]
     partial class Db
     {
         /// <inheritdoc />
@@ -113,6 +113,9 @@ namespace Testovik_Data.Migrations
                         .HasColumnType("bigint");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
 
                     b.Property<long>("IdBrend")
                         .HasColumnType("bigint");

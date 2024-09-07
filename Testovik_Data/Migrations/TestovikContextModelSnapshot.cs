@@ -111,6 +111,9 @@ namespace Testovik_Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
                     b.Property<long>("IdBrend")
                         .HasColumnType("bigint");
 

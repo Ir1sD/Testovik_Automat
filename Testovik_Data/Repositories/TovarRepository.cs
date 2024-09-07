@@ -22,7 +22,7 @@ namespace Testovik_Data.Repositories
 		{
 			return await _context.Tovars
 				.AsNoTracking()
-				.Select(c => Tovar.New(c.Id, c.Name, c.IdBrend, c.LogoPath, c.Price))
+				.Select(c => Tovar.New(c.Id, c.Name, c.IdBrend, c.LogoPath, c.Price , c.Count))
 				.ToListAsync();
 		}
 	}

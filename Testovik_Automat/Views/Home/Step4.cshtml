@@ -1,4 +1,8 @@
-﻿@{
+﻿@using Testovik_Automat.Requests;
+
+@model Step4Request;
+
+@{
     ViewData["Title"] = "Спасибо за покупку";
 }
 
@@ -9,25 +13,27 @@
 			<label class="header_text">
 				Спасибо за покупку!</h1> <br>
 				<label class="header_text">
-					Пожайлуста, возьмите вашу сдачу: <label for="" class="label_sum">34 руб.</label></h1>
+					Пожайлуста, возьмите вашу сдачу: <label for="" class="label_sum">@Model.Sum</label>
 					<br><br>
-					<label class="header_text">Ваши монеты:</h1> <br>
+					<label class="header_text">Ваши монеты:<label/> <br>
 		</div>
 		<div class="container_coins">
 			<button class="coin coin__small">1</button>
-			<label for="" class="label-tovar-name">4 шт</label>
+			<label for="" class="label-tovar-name">@Model.i1 шт</label>
 
 			<button class="coin coin__small">2</button>
-			<label for="" class="label-tovar-name">4 шт</label>
+			<label for="" class="label-tovar-name">@Model.i2 шт</label>
 
 			<button class="coin coin__small">5</button>
-			<label for="" class="label-tovar-name">4 шт</label>
+			<label for="" class="label-tovar-name">@Model.i5 шт</label>
 
 			<button class="coin coin__small">10</button>
-			<label for="" class="label-tovar-name">4 шт</label>
+			<label for="" class="label-tovar-name">@Model.i10 шт</label>
 		</div>
 		<div class="block_button">
-			<button class="action_button" style="margin: 0 auto; display: block;">Каталог напитков</button>
+			<form asp-action="Index" asp-controller="Home">
+				<input type="submit" class="action_button button__def" style="margin: 0 auto; display: block;" value="Каталог напитков">
+			</form>
 		</div>
 
 

@@ -8,10 +8,11 @@ namespace Testovik_Core.Models
 		public long IdBrend { get; set; }
 		public string LogoPath { get; set; } = string.Empty;
 		public int Price { get; set; }
+		public int Count { get; set; }
 
 		private Tovar() { }
 
-		public static Tovar New(long id , string name , long idBrend , string logoPath , int price)
+		public static Tovar New(long id , string name , long idBrend , string logoPath , int price , int count)
 		{
 			return new Tovar()
 			{
@@ -19,7 +20,8 @@ namespace Testovik_Core.Models
 				  Name = name ,
 				  IdBrend = idBrend ,
 				  LogoPath = logoPath ,
-				  Price = price
+				  Price = price,
+				  Count = count
 			};
 		}
 	}

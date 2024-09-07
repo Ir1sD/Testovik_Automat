@@ -5,5 +5,6 @@ namespace Testovik_Core.Abstractions
 	public interface IOrderRepository
 	{
 		Task<List<Order>> GetListAsync();
+		Task<long> Add(int sum);
 	}
 }

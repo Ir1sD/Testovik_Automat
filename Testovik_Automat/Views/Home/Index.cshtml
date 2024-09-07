@@ -1,4 +1,8 @@
-﻿@{
+﻿@using Testovik_Automat.Requests;
+
+@model CatalogRequest;
+
+@{
 	ViewData["Title"] = "Главная";
 }
 
@@ -14,60 +18,104 @@
 			</div>
 
 			<div class="col">
-				<button class="action_button">Импорт</button>
+				<button class="action_button button__def">Импорт</button>
 			</div>
 
 			<div class="col col__wide">
 				<label>Выберите бренд</label>
 				<br><br>
-				<select name="" class="select">
-					<option value="1">Все бренды</option>
+				<select name="" class="select" id="brends">
+					<option value="0">Все бренды</option>
+
+					@foreach (var item in Model.Brends)
+					{
+						<option value="@item.Id">@item.Name</option>
+					}
+
 				</select>
 			</div>
 
 			<div class="col">
-				<label>Стоимость</label>
+				@* <label>Стоимость</label>
 				<br><br>
 				<div class="trackbar">
-					<span class="bound_label">0 руб</span>
+					<span class="bound_label">@Model.MinPrice</span>
 					<input type="range" />
-					<span class="bound_label">110 руб</span>
-				</div>
+					<span class="bound_label">@Model.MaxPrice</span>
+				</div> *@
 			</div>
 
 			<div class="col">
-				<button class="action_button action_button__active">Выбрано</button>
+				<form id="form" asp-action="Step2" asp-controller="Home">
+					<input type="submit" class="action_button" value="Выбрано" id="go" disabled = "disabled">
+				</form>
 			</div>
 
 
 
 		</div>
 
-		<div class="catalog">
-
-			<div class="item">
-				<div class="item_content item_content__wide">
-					<img src="res/item1.jpg" alt="" class="tovar-img">
-				</div>
-				<div class="item_content">
-					<label for="" class="label-tovar-name">Напиток газированный </label>
-					<label for="" class="label-tovar-name label-tovar-name__wide">Coca-Cola</label>
-				</div>
-
-				<div class="item_content">
-					<label for="" class="label-tovar-name label-tovar-name__wide">100 руб</label>
-				</div>
-
-				<div class="item_content">
-					<button class="catalog-button">Выбрать</button>
-				</div>
-
-
-			</div>
-
+		<div class="catalog" id="zone">
 
 		</div>
 	</div>
 	</div>
 
 </body>
+
+<script>
+	$(document).ready(function () {
+
+		var clickedIds = [];
+
+		$(document).on('click', '.catalog-button', function () {
+			var button = $(this);
+
+			if (button.hasClass('button__active')) {
+
+				button.removeClass('button__active');
+				button.addClass('button__def');
+				var id = $(this).attr('id')
+				var indexToRemove = clickedIds.indexOf(id);
+				clickedIds.splice(indexToRemove, 1);
+				$('#i-' + id).remove();
+
+				if(clickedIds.length == 0)
+				{
+					$("#go").removeClass('button__active');
+					$('#go').prop('disabled', true);
+				}
+			}
+			else {
+
+				button.addClass('button__active');
+				button.removeClass('button__def');
+				var id = $(this).attr('id')
+				clickedIds.push(id);
+				$("#form").append('<input type ="hidden" value = "' + id + '" name="ids" id = "i-' + id + '"/>');
+				$("#go").addClass('button__active');
+				$('#go').prop('disabled', false);
+			}
+		});
+
+		function loadList() {
+			var selectedValue = $('#brends').val();
+
+			$.post('/Home/GetTovarList', {
+				brendId: selectedValue,
+				ids: clickedIds
+			})
+				.done(function (data) {
+					$("#zone").html(data);
+					initScripts();
+				})
+		}
+
+		loadList();
+
+		$('#brends').change(function () {
+			loadList();
+		});
+
+	});
+</script>
