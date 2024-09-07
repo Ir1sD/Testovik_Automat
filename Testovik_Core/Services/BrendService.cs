@@ -17,5 +17,12 @@ namespace Testovik_Core.Services
 		{
 			return await brendRepository.GetListAsync();
 		}
+
+		public async Task<Brend> GetById(long id)
+		{
+			var list = await GetListAsync();
+
+			return list.FirstOrDefault(c => c.Id == id);
+		}
 	}
 }

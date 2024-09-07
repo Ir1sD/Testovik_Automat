@@ -18,7 +18,7 @@
 			</div>
 
 			<div class="col">
-				<button class="action_button button__def">Импорт</button>
+				<button class="action_button button__def" id="excel">Импорт</button>
 			</div>
 
 			<div class="col col__wide">
@@ -116,6 +116,12 @@
 		$('#brends').change(function () {
 			loadList();
 		});
+
+		$('#excel').click(function () {
+			var selectedValue = $('#brends').val();
+			window.location.href = '/Home/SaveExcel?idBrend=' + selectedValue;
+		});
+		
 
 	});
 </script>

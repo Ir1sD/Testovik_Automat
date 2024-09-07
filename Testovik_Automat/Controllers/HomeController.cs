@@ -1,10 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Diagnostics;
 using Testovik_Automat.Requests;
 using Testovik_Automat.Responses;
 using Testovik_Core.Abstractions;
-using Testovik_Core.Models;
+using NPOI.SS.UserModel;
+using NPOI.HSSF.UserModel;
 
 namespace Testovik_Automat.Controllers
 {
@@ -120,6 +119,64 @@ namespace Testovik_Automat.Controllers
 			return result;
 		}
 
+		public async Task<FileStreamResult> SaveExcel(int idBrend)
+		{
+			var list = await _tovarService.GetListWithFilterAsync(idBrend);
+			#region NPOI
+			var fileName = "Каталог.xls";
+			var memory = new MemoryStream();
+			
+			IWorkbook workbook;
+			IRow row_n;
+			ICell cell;
+			IFont font, font_link;
+			workbook = new HSSFWorkbook();
+			var excelSheet1 = workbook.CreateSheet("Статистика");
+			var ch = workbook.GetCreationHelper();
+			excelSheet1.DefaultColumnWidth = 14;
 
+			int cellIndex = 0;
+			int countrow = 0;
+			#endregion
+
+			cellIndex = 0;
+			row_n = excelSheet1.CreateRow(countrow++);
+
+			cell = row_n.CreateCell(cellIndex++);
+			cell.SetCellValue("Название");
+
+			cell = row_n.CreateCell(cellIndex++);
+			cell.SetCellValue("Бренд");
+
+			cell = row_n.CreateCell(cellIndex++);
+			cell.SetCellValue("Цена");
+
+			cell = row_n.CreateCell(cellIndex++);
+			cell.SetCellValue("Количетство");
+
+			foreach (var item in list)
+			{
+				var brend = await _brendService.GetById(item.IdBrend);
+				cellIndex = 0;
+				row_n = excelSheet1.CreateRow(countrow++);
+
+				cell = row_n.CreateCell(cellIndex++);
+				cell.SetCellValue(item.Name);
+
+				cell = row_n.CreateCell(cellIndex++);
+				cell.SetCellValue(brend.Name);
+
+				cell = row_n.CreateCell(cellIndex++);
+				cell.SetCellValue(item.Price);
+
+				cell = row_n.CreateCell(cellIndex++);
+				cell.SetCellValue(item.Count);
+			}
+
+			workbook.Write(memory);
+			memory.Position = 0;
+
+			return File(memory, "application/vnd.ms-excel", fileName);
+		}
 	}
 }
