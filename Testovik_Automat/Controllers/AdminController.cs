@@ -59,7 +59,7 @@ namespace Testovik_Automat.Controllers
 
             var list = _orderService.GetListAsync().Result;
 
-            foreach (var order in list)
+            foreach (var order in list.OrderByDescending(c => c.DateCreate))
             {
                 var items = await _orderWithUserService.GetByIdOrder(order.Id);
                 var modelItem = new OrdersRequest()
