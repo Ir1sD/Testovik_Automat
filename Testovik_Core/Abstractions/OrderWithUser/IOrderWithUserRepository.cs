@@ -6,5 +6,7 @@ namespace Testovik_Core.Abstractions
 	{
 		Task<List<OrderWithUser>> GetListAsync();
 		Task AddRange(List<Tovar> tovars, int[] counts, long idOrder);
-	}
+		Task<List<OrderWithUser>> GetByIdOrder(long orderId);
+
+    }
 }

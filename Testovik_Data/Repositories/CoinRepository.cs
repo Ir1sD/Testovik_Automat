@@ -37,21 +37,39 @@ namespace Testovik_Data.Repositories
 		/// <returns></returns>
 		public async Task AddRange(int i1 , int i2 , int i5 , int i10)
 		{
-			var coin = await _context.Coins.FirstOrDefaultAsync(c => c.Num == 1);
+			var coin = await _context.Coins
+				.FirstOrDefaultAsync(c => c.Num == 1);
 			coin.Count += i1;
 			_context.Coins.Update(coin);
 
-			coin = await _context.Coins.FirstOrDefaultAsync(c => c.Num == 2);
+			coin = await _context.Coins
+				.FirstOrDefaultAsync(c => c.Num == 2);
 			coin.Count += i2;
 			_context.Coins.Update(coin);
 
-			coin = await _context.Coins.FirstOrDefaultAsync(c => c.Num == 5);
+			coin = await _context.Coins
+				.FirstOrDefaultAsync(c => c.Num == 5);
 			coin.Count += i5;
 			_context.Coins.Update(coin);
 
-			coin = await _context.Coins.FirstOrDefaultAsync(c => c.Num == 10);
+			coin = await _context.Coins
+				.FirstOrDefaultAsync(c => c.Num == 10);
 			coin.Count += i10;
 			_context.Coins.Update(coin);
+
+			await _context.SaveChangesAsync();
+		}
+
+		public async Task Update(List<Coin> coins)
+		{
+			foreach (var coin in coins)
+			{
+				var con = await _context.Coins
+					.FirstOrDefaultAsync(c => c.Id == coin.Id);
+
+				con.Count = coin.Count;
+				_context.Coins.Update(con);
+			}
 
 			await _context.SaveChangesAsync();
 		}

@@ -1,0 +1,36 @@
+﻿@{
+
+}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/admin.css">
+
+</head>
+<body class="admin">
+    <div class="sidebar">
+        <ul class="Personal">
+            <li><a asp-controller="Admin" asp-action="Index">Index</a></li>
+            <li><a asp-controller="Admin" asp-action="Coins">Управление монетами</a></li>
+            <li><a asp-controller="Admin" asp-action="Orders">Список заказов</a></li>
+        </ul>
+        <br />
+        <ul class="Personal">
+            <li><a asp-controller="Admin" asp-action="TovarList">Управление товаром</a></li>
+            <li><a asp-controller="Admin" asp-action="CreateTovarView">Добавление товара</a></li>
+        </ul>
+        <br />
+        <ul class="Personal">
+            <li><a asp-controller="Home" asp-action="SaveExcel">Импорт списка заказов</a></li>
+        </ul>
+        <br />
+        <ul class="Personal">
+            <li><a asp-controller="Home" asp-action="Index">На главную</a></li>
+        </ul>
+    </div>
+        <div class="admincontent">
+            @RenderBody()
+        </div>
+
+</body>

@@ -43,5 +43,17 @@ namespace Testovik_Data.Repositories
 
 			await _context.SaveChangesAsync();
 		}
-	}
+
+        public async Task<List<OrderWithUser>> GetByIdOrder(long orderId)
+		{
+			var list = await _context.OrdersWithUsers
+				.AsNoTracking()
+				.Where(c => c.IdOrder == orderId)
+				.Select(c => OrderWithUser.New(c.Id , c.IdOrder , c.IdTovar , c.NameTovar , c.Count))
+				.ToListAsync();
+
+			return list;
+		}
+
+    }
 }

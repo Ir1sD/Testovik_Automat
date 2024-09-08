@@ -7,6 +7,9 @@ namespace Testovik_Core.Abstractions
         Task<List<Tovar>> GetListAsync();
         Task<List<Tovar>> GetListWithFilterAsync(int brendId);
         Task<List<Tovar>> GetListWithListId(long[] ids);
+        Task Update(Tovar tovar);
+        Task Add(Tovar tovar);
+       
 
-	}
+    }
 }

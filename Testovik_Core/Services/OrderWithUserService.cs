@@ -16,5 +16,10 @@ namespace Testovik_Core.Services
 		{
 			return await orderWithUserRepository.GetListAsync();
 		}
+
+		public async Task<List<OrderWithUser>> GetByIdOrder(long orderId)
+		{
+			return await orderWithUserRepository.GetByIdOrder(orderId);
+		}
 	}
 }

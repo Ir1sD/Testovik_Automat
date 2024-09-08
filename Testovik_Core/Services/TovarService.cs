@@ -48,5 +48,15 @@ namespace Testovik_Core.Services
 
 			return model;
 		}
-	}
+
+		public async Task Update(Tovar tovar)
+		{
+			await tovarRepository.Update(tovar);
+		}
+
+        public async Task Add(Tovar tovar)
+        {
+			await tovarRepository.Add(tovar);
+        }
+    }
 }

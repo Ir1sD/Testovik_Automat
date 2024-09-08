@@ -6,5 +6,6 @@ namespace Testovik_Core.Abstractions
 	{
 		Task<List<Coin>> GetListAsync();
 		Task AddRange(int i1, int i2, int i5, int i10);
+		Task Update(List<Coin> coins);
 	}
 }

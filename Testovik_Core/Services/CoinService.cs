@@ -21,5 +21,10 @@ namespace Testovik_Core.Services
 		{
 			await _coinRepository.AddRange(i1, i2, i5, i10);
 		}
+
+		public async Task Update(List<Coin> coins)
+		{
+			await _coinRepository.Update(coins);
+		}
 	}
 }

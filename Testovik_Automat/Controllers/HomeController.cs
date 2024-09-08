@@ -119,7 +119,7 @@ namespace Testovik_Automat.Controllers
 			return result;
 		}
 
-		public async Task<FileStreamResult> SaveExcel(int idBrend)
+		public async Task<FileStreamResult> SaveExcel(int idBrend = 0)
 		{
 			var list = await _tovarService.GetListWithFilterAsync(idBrend);
 			#region NPOI

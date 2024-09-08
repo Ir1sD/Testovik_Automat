@@ -1,0 +1,33 @@
+﻿@using Testovik_Core.Models
+
+@model List<Brend>
+
+@{
+    Layout = "_admin";
+}
+
+<body>
+    <form asp-action="CreateTovar" asp-controller="Admin">
+        <label>Название</label><br/>
+        <input type="text" name="Name"><br />
+
+        <label>Бренд</label><br />
+        <select name="IdBrend">
+            @foreach (var brend in Model)
+            {
+                <option value="@brend.Id">@brend.Name</option>
+            }
+        </select><br />
+
+        <label>Лого путь</label><br />
+        <input type="text" name="LogoPath"><br />
+
+        <label>Цена</label><br />
+        <input type="number" name="Price" min="1"><br />
+
+        <label>Количество</label><br />
+        <input type="number" name="Count" min="0"><br />
+
+        <input type="submit" value="Добавить"><br />
+    </form>
+</body>

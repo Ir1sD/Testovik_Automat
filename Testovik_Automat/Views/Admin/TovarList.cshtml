@@ -1,0 +1,60 @@
+﻿@using Testovik_Automat.Requests;
+
+@model TovarAdminRequest
+
+@{
+    Layout = "_admin";
+    int index = -1;
+}
+
+<form asp-action="UpdateTovar" asp-controller="Admin">
+    <table>
+        <thead>
+        <th>Название</th>
+        <th>Бренд</th>
+        <th>Путь до логотипа</th>
+        <th>Цена</th>
+        <th>Количество</th>
+        </thead>
+
+        <tbody>
+            @foreach (var tovar in Model.Tovars)
+            {
+                index++;
+                <tr>
+                    <input type="hidden" value="@tovar.Id" name="[@index].Id">
+                    <td>
+                        <input type="text" name="[@index].Name" value="@tovar.Name" />
+                    </td>
+                    <td>
+                        <select name="[@index].IdBrend">
+                            @foreach (var brend in Model.Brends)
+                            {
+                                if (brend.Id != tovar.IdBrend)
+                                {
+                                    <option value="@brend.Id">@brend.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@brend.Id" selected>@brend.Name</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" value="@tovar.LogoPath" name="[@index].LogoPath">
+                    </td>
+                    <td>
+                        <input type="number" value="@tovar.Price" name="[@index].Price" min="1">
+                    </td>
+                    <td>
+                        <input type="number" value="@tovar.Count" name="[@index].Count" min="0">
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <input type="submit" value="Сохранить">
+</form>
+
+

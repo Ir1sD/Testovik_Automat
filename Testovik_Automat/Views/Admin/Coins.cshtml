@@ -1,0 +1,32 @@
+﻿@using Testovik_Core.Models
+
+@model List<Coin>
+@{
+	Layout = "_admin";
+	int index = -1;
+}
+
+<body>
+	<form asp-action="SaveCoins" asp-controller="Admin">
+		<table>
+			<thead>
+			<th>Номинал</th>
+			<th>Количество</th>
+			</thead>
+
+			<tbody>
+				@foreach (var coin in Model)
+				{
+					index++;
+					<tr>
+						<td>@coin.Num</td>
+						<input type="hidden" value="@coin.Id" name="[@index].Id">
+						<input type="hidden" value="@coin.Num" name="[@index].Num">
+						<td><input type="number" value="@coin.Count" name="[@index].Count"></td>
+					</tr>
+				}
+			</tbody>
+		</table>
+		<input type="submit" value="Сохранить">
+	</form>
+</body>
