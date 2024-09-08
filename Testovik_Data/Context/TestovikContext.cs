@@ -17,5 +17,6 @@ namespace Testovik_Data.Context
 		public DbSet<CoinEntity> Coins { get; set; }
 		public DbSet<OrderEntity> Orders { get; set; }
 		public DbSet<OrderWithUserEntity> OrdersWithUsers { get; set; }
+		public DbSet<UserEntity> Users { get; set; }
 	}
 }

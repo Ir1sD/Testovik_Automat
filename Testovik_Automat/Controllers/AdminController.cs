@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
 using Testovik_Automat.Requests;
 using Testovik_Automat.Responses;
 using Testovik_Core.Abstractions;
@@ -6,6 +9,7 @@ using Testovik_Core.Models;
 
 namespace Testovik_Automat.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private readonly ICoinService _coinService;
@@ -109,6 +113,12 @@ namespace Testovik_Automat.Controllers
             var item = Tovar.New(0, response.Name, response.IdBrend, response.LogoPath, response.Price, response.Count);
             await _tovarService.Add(item);
             return await TovarList();
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index", "Home");
         }
     }
 }

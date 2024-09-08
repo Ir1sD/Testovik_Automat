@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Testovik_Data.Context;
 
@@ -11,9 +12,11 @@ using Testovik_Data.Context;
 namespace Testovik_Data.Migrations
 {
     [DbContext(typeof(TestovikContext))]
-    partial class TestovikContextModelSnapshot : ModelSnapshot
+    [Migration("20240908193400_Users")]
+    partial class Users
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

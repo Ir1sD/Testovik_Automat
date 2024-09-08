@@ -1,0 +1,30 @@
+﻿
+@{
+	Layout = null;
+}
+
+<link rel="stylesheet" href="~/css/login.css">
+
+<body>
+	<a class="closeModal" asp-action="Index" asp-controller="Home"></a>
+	<div class="container">
+		<h1>Авторизация</h1>
+
+		<form asp-action="Login" asp-controller="Home">
+
+			<p>
+				<input type="text" placeholder="Логин" name="Login" />
+			</p>
+
+			<p>
+				<input type="text" placeholder="Пароль" name="Password" />
+			</p>
+
+			<input type="submit" value="Далее" class="submit-btn">
+
+		</form>
+	</div>
+
+	</div>
+</body>
+</html>

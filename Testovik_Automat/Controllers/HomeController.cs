@@ -4,6 +4,10 @@ using Testovik_Automat.Responses;
 using Testovik_Core.Abstractions;
 using NPOI.SS.UserModel;
 using NPOI.HSSF.UserModel;
+using Testovik_Automat.Helpers;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 
 namespace Testovik_Automat.Controllers
 {
@@ -14,14 +18,21 @@ namespace Testovik_Automat.Controllers
 		private readonly IOrderWithUserService _orderWithUserService;
 		private readonly ITovarService _tovarService;
 		private readonly ICoinService _coinService;
+		private readonly IUserService _userService;
 
-		public HomeController(IOrderService orderService , IBrendService brendService , IOrderWithUserService orderWithUserService , ITovarService tovarService , ICoinService coinService )
+		public HomeController(IOrderService orderService , 
+			IBrendService brendService , 
+			IOrderWithUserService orderWithUserService , 
+			ITovarService tovarService , 
+			ICoinService coinService , 
+			IUserService userService)
 		{
 			_orderService = orderService;
 			_brendService = brendService;
 			_orderService = orderService;
 			_tovarService = tovarService;
 			_coinService = coinService;
+			_userService = userService;
 		}
 
 		public async Task<IActionResult> Index()
@@ -177,6 +188,24 @@ namespace Testovik_Automat.Controllers
 			memory.Position = 0;
 
 			return File(memory, "application/vnd.ms-excel", fileName);
+		}
+
+		public IActionResult LoginView()
+		{
+			return View("Login");
+		}
+
+		public async Task<IActionResult> Login(string Login , string Password)
+		{
+			if(await _userService.Get(Login , HashHelper.Hash(Password)) != null)
+			{
+				var claims = new List<Claim> { new Claim(ClaimTypes.Email, Login) };
+				ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "Cookies");
+				await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+				return RedirectToAction("Index", "Admin");
+			}
+
+			return View("Login");
 		}
 	}
 }
