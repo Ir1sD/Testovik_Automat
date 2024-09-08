@@ -4,6 +4,9 @@ namespace Testovik_Core.Abstractions
 {
 	public interface IBrendRepository
 	{
-		Task<List<Brend>> GetListAsync();
+        /// <summary>
+        /// Возвращает список брендов
+        /// </summary>
+        Task<List<Brend>> GetListAsync();
 	}
 }

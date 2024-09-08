@@ -26,6 +26,13 @@ namespace Testovik_Data.Repositories
 				.ToListAsync();
 		}
 
+		/// <summary>
+		/// Добавляет данные о заказе
+		/// </summary>
+		/// <param name="tovars">Список товаров</param>
+		/// <param name="counts">Количества</param>
+		/// <param name="idOrder">Id заказа</param>
+		/// <returns></returns>
 		public async Task AddRange(List<Tovar> tovars , int[] counts , long idOrder)
 		{
 			for(int i = 0; i < tovars.Count; i++)
@@ -44,6 +51,11 @@ namespace Testovik_Data.Repositories
 			await _context.SaveChangesAsync();
 		}
 
+		/// <summary>
+		/// Возвращает список подробной информации о заказе
+		/// </summary>
+		/// <param name="orderId">Id заказа</param>
+		/// <returns></returns>
         public async Task<List<OrderWithUser>> GetByIdOrder(long orderId)
 		{
 			var list = await _context.OrdersWithUsers

@@ -27,6 +27,11 @@ namespace Testovik_Data.Repositories
 				.ToListAsync();
 		}
 
+		/// <summary>
+		/// Обновляет информацию о товаре
+		/// </summary>
+		/// <param name="tovar">Объект товара</param>
+		/// <returns></returns>
         public async Task Update(Tovar tovar)
         {
 			var entity = await _context.Tovars
@@ -47,6 +52,11 @@ namespace Testovik_Data.Repositories
 			await _context.SaveChangesAsync();
         }
 
+		/// <summary>
+		/// Добавляет товар
+		/// </summary>
+		/// <param name="tovar">Обхект товара</param>
+		/// <returns></returns>
 		public async Task Add(Tovar tovar)
 		{
 			var entity = new TovarEntity

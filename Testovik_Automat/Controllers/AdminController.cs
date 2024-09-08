@@ -103,6 +103,7 @@ namespace Testovik_Automat.Controllers
             var model = await _brendService.GetListAsync();
             return View("AddTovar", model);
         }
+
         public async Task<IActionResult> CreateTovar(TovarAdminResponse response)
         {
             var item = Tovar.New(0, response.Name, response.IdBrend, response.LogoPath, response.Price, response.Count);

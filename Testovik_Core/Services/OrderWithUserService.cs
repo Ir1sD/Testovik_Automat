@@ -12,12 +12,21 @@ namespace Testovik_Core.Services
 			this.orderWithUserRepository = orderWithUserRepository;
 		}
 
-		public async Task<List<OrderWithUser>> GetListAsync()
+        /// <summary>
+        /// Возвращает список подробных заказов
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<OrderWithUser>> GetListAsync()
 		{
 			return await orderWithUserRepository.GetListAsync();
 		}
 
-		public async Task<List<OrderWithUser>> GetByIdOrder(long orderId)
+        /// <summary>
+        /// Возвращает список подробной информации о заказе
+        /// </summary>
+        /// <param name="orderId">Id заказа</param>
+        /// <returns></returns>
+        public async Task<List<OrderWithUser>> GetByIdOrder(long orderId)
 		{
 			return await orderWithUserRepository.GetByIdOrder(orderId);
 		}

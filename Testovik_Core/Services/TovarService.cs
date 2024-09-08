@@ -12,11 +12,20 @@ namespace Testovik_Core.Services
 			this.tovarRepository = tovarRepository;
 		}
 
-		public async Task<List<Tovar>> GetListAsync()
+        /// <summary>
+        /// Возвращает список товаров
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<Tovar>> GetListAsync()
 		{
 			return await tovarRepository.GetListAsync();
 		}
 
+		/// <summary>
+		/// Возвращает список товаров по id бренда
+		/// </summary>
+		/// <param name="brendId">Id бренда</param>
+		/// <returns></returns>
 		public async Task<List<Tovar>> GetListWithFilterAsync(int brendId)
 		{
 			var list = await GetListAsync();
@@ -30,6 +39,11 @@ namespace Testovik_Core.Services
 			return list;
 		}
 
+		/// <summary>
+		/// Возращает список товаров по списку id
+		/// </summary>
+		/// <param name="ids">Список id</param>
+		/// <returns></returns>
 		public async Task<List<Tovar>> GetListWithListId(long[] ids)
 		{
 			var list = await GetListAsync();
@@ -49,11 +63,21 @@ namespace Testovik_Core.Services
 			return model;
 		}
 
-		public async Task Update(Tovar tovar)
+        /// <summary>
+        /// Обновляет информацию о товаре
+        /// </summary>
+        /// <param name="tovar">Объект товара</param>
+        /// <returns></returns>
+        public async Task Update(Tovar tovar)
 		{
 			await tovarRepository.Update(tovar);
 		}
 
+        /// <summary>
+        /// Добавляет товар
+        /// </summary>
+        /// <param name="tovar">Обхект товара</param>
+        /// <returns></returns>
         public async Task Add(Tovar tovar)
         {
 			await tovarRepository.Add(tovar);

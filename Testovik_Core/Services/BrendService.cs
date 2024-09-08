@@ -13,11 +13,18 @@ namespace Testovik_Core.Services
 			this.brendRepository = brendRepository;
 		}
 
-		public async Task<List<Brend>> GetListAsync()
+        /// <summary>
+        /// Возвращает список брендов
+        /// </summary>
+        public async Task<List<Brend>> GetListAsync()
 		{
 			return await brendRepository.GetListAsync();
 		}
 
+		/// <summary>
+		/// Возвращает бренд по Id
+		/// </summary>
+		/// <param name="id">Идентификатор</param>
 		public async Task<Brend> GetById(long id)
 		{
 			var list = await GetListAsync();

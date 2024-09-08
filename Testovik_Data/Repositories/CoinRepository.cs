@@ -60,6 +60,11 @@ namespace Testovik_Data.Repositories
 			await _context.SaveChangesAsync();
 		}
 
+		/// <summary>
+		/// Обновляет информацию о монетах
+		/// </summary>
+		/// <param name="coins">Список понет для обновления</param>
+		/// <returns></returns>
 		public async Task Update(List<Coin> coins)
 		{
 			foreach (var coin in coins)
